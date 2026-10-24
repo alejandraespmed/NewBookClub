@@ -5,14 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Open Book Wednesdays · Mayor Street Library</title>
 <meta name="description" content="Six Wednesday evenings. A reading list picked for you. A librarian who keeps talk on the book. €70, drink included. Starts Wednesday 4 November, 7pm, at Mayor Street Library.">
-<meta name="theme-color" content="#020a18">
+<meta name="theme-color" content="#14110e">
 
 <!-- Open Graph / Twitter -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Open Book Wednesdays · Mayor Street Library">
 <meta property="og:description" content="Finish the book. Actually talk about it. Six Wednesday evenings, a librarian-led list and a drink to finish. €70.">
 <meta property="og:locale" content="en_IE">
-<!-- og:image placeholder (1200x630): add <meta property="og:image" content="https://YOUR-DOMAIN/og-image.png"> and the matching twitter:image tag -->
+<!-- og:image placeholder (1200x630, PNG or JPG, hosted at a public https URL). When you have it, add:
+  <meta property="og:image" content="https://YOUR-DOMAIN/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://YOUR-DOMAIN/og-image.png">
+-->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Open Book Wednesdays · Mayor Street Library">
 <meta name="twitter:description" content="Finish the book. Actually talk about it. Six Wednesday evenings, a librarian-led list and a drink to finish. €70.">
@@ -20,11 +25,10 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
 
 <!--
-  PLACEHOLDERS STILL TO FILL (search for class="todo" or CONFIG):
-  - Booking link and librarian email (CONFIG in the script at the bottom)
-  - First reading lists and announcement date (result panel, "First list")
-  - FAQ confirmations: list published before 4 November; spoiler policy; library card sign-up and cost
-  - og:image (1200x630)
+  STILL TO DO (search for CONFIG in the script at the bottom):
+  - og:image (see the comment above)
+  - Optional: set CONFIG.bookingUrl to a booking page (Eventbrite, Ticket Tailor, etc.).
+    While it is empty, the reserve button opens a pre-filled email to the library.
 -->
 
 <script>
@@ -44,28 +48,31 @@
 <style>
 :root {
   color-scheme: dark;
-  --bg: #020a18;
-  --bg-grad: linear-gradient(170deg, #020a18, #041028 40%, #06142e 70%, #020a18);
-  --surface: rgba(8,24,56,0.78);
-  --border: rgba(212,169,79,0.24);
-  --text: #e2dac7;
-  --text-bright: #f6efdc;
-  --text-dim: #a39b86;
-  --neon: #d4a94f;      /* antique gold */
-  --cyan: #e3c27c;      /* light gold: links, focus */
-  --green: #9cc3a8;     /* sage */
-  --amber: #d4a94f;
+  /* Dark: warm charcoal and umber, muted brass */
+  --bg: #14110e;
+  --bg-grad: linear-gradient(170deg, #14110e, #1b1713 40%, #201b16 70%, #14110e);
+  --glow: radial-gradient(ellipse 70% 42% at 50% 0%, rgba(194,164,107,0.09), transparent 70%);
+  --surface: rgba(33,28,23,0.84);
+  --border: rgba(196,167,112,0.22);
+  --text: #e3dbcb;
+  --text-bright: #f4eddf;
+  --text-dim: #a39a88;
+  --neon: #c2a46b;      /* muted brass */
+  --cyan: #d6bd8a;      /* pale brass: links, focus */
+  --green: #9fb19a;     /* faded sage */
+  --amber: #c2a46b;
 
-  --header-bg: rgba(2,10,24,0.66);
-  --grid-line: rgba(212,169,79,0.03);
-  --orb-a: rgba(212,169,79,0.20);
-  --orb-b: rgba(140,47,61,0.26);
-  --cta-bg: #d4a94f;
-  --cta-text: #1a1305;
-  --amber-text: #e3c27c;
-  --spine-empty: rgba(163,155,134,0.10);
-  --spine-band: rgba(255,222,150,0.6);
-  --spine-icon: #fbf3dc;
+  --header-bg: rgba(20,17,14,0.7);
+  --grid-line: rgba(196,167,112,0.03);
+  --grain: 0.07;
+  --orb-a: rgba(194,164,107,0.15);
+  --orb-b: rgba(110,45,42,0.24);
+  --cta-bg: #c2a46b;
+  --cta-text: #1b1409;
+  --amber-text: #d6bd8a;
+  --spine-empty: rgba(163,154,136,0.09);
+  --tool: rgba(205,175,112,0.72);
+  --spine-icon: #e9d9b0;
 
   --display: "Cormorant Garamond", "Iowan Old Style", Garamond, Georgia, "Times New Roman", serif;
   --body: "EB Garamond", "Iowan Old Style", Garamond, Georgia, "Times New Roman", serif;
@@ -73,28 +80,31 @@
 
 html.light {
   color-scheme: light;
-  --bg: #f6f0e2;
-  --bg-grad: linear-gradient(170deg, #f9f4e7, #f3ecd9 40%, #eee5cf 70%, #f9f4e7);
-  --surface: rgba(255,252,244,0.82);
-  --border: rgba(110,80,20,0.28);
-  --text: #2b2a33;
-  --text-bright: #14131a;
-  --text-dim: #5d5a56;
-  --neon: #7b1e2c;      /* oxblood */
-  --cyan: #7b1e2c;
-  --green: #2f6b4a;
-  --amber: #8a6414;
+  /* Light: bone, stone and parchment, muted oxblood */
+  --bg: #eeeae0;
+  --bg-grad: linear-gradient(170deg, #f1ede3, #ebe6d9 40%, #e6e0d1 70%, #f1ede3);
+  --glow: radial-gradient(ellipse 70% 42% at 50% 0%, rgba(255,255,255,0.55), transparent 70%);
+  --surface: rgba(251,248,241,0.86);
+  --border: rgba(90,70,40,0.26);
+  --text: #2d2b28;
+  --text-bright: #171614;
+  --text-dim: #5e5a52;
+  --neon: #6b2b27;
+  --cyan: #6b2b27;
+  --green: #4a6048;
+  --amber: #8a6a35;
 
-  --header-bg: rgba(246,240,226,0.78);
-  --grid-line: rgba(110,80,20,0.045);
-  --orb-a: rgba(212,169,79,0.26);
-  --orb-b: rgba(160,60,75,0.14);
-  --cta-bg: #7b1e2c;
-  --cta-text: #fbf6ea;
-  --amber-text: #7b1e2c;
-  --spine-empty: rgba(110,80,20,0.07);
-  --spine-band: rgba(255,222,150,0.75);
-  --spine-icon: #fbf3dc;
+  --header-bg: rgba(238,234,224,0.8);
+  --grid-line: rgba(90,70,40,0.05);
+  --grain: 0.06;
+  --orb-a: rgba(194,164,107,0.22);
+  --orb-b: rgba(130,70,60,0.12);
+  --cta-bg: #6b2b27;
+  --cta-text: #f6f1e6;
+  --amber-text: #6b2b27;
+  --spine-empty: rgba(90,70,40,0.07);
+  --tool: rgba(196,163,98,0.85);
+  --spine-icon: #efe2bc;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -106,7 +116,7 @@ body {
   line-height: 1.7;
   color: var(--text);
   background-color: var(--bg);
-  background-image: var(--bg-grad);
+  background-image: var(--glow), var(--bg-grad);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -114,6 +124,11 @@ body {
   font-kerning: normal;
   overflow-x: clip;
   min-height: 100vh;
+}
+/* Paper grain */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: var(--grain);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55 0 0 0 0 .5 0 0 0 0 .42 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
 /* Background layers */
@@ -260,33 +275,40 @@ a { color: var(--cyan); text-underline-offset: 3px; }
 .strip p { margin: 0; }
 .strip p + p { margin-top: 6px; color: var(--text-dim); font-style: italic; }
 
-/* Spines: cloth-bound books */
+/* Spines: antique leather and cloth, gold tooling */
 .spines {
-  display: flex; align-items: flex-end; justify-content: center; gap: 10px;
+  display: flex; align-items: flex-end; justify-content: center; gap: 9px;
   padding: 18px 8px 4px; flex-wrap: nowrap; position: relative;
 }
 .spine-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .spine {
-  --c: #8c2f3d;
-  width: 32px; border-radius: 3px 3px 1px 1px;
+  --c: #6e2d2a;
+  position: relative;
+  width: 34px; border-radius: 3px 3px 1px 1px;
   border: 1px solid var(--border);
   background: var(--spine-empty);
-  display: flex; align-items: flex-start; justify-content: center; padding-top: 8px;
   color: var(--text-dim);
   transition: background .45s ease, color .45s ease, box-shadow .45s ease, border-color .45s ease;
+}
+.spine svg {
+  position: absolute; top: 54%; left: 50%; width: 16px; height: 16px; transform: translateX(-50%);
 }
 .spine.on {
   background:
     linear-gradient(to bottom,
-      transparent 0 11%, var(--spine-band) 11% 13%, transparent 13% 21%, var(--spine-band) 21% 22%,
-      transparent 22% 77%, var(--spine-band) 77% 78%, transparent 78% 86%, var(--spine-band) 86% 88%, transparent 88%),
-    linear-gradient(90deg, rgba(0,0,0,0.22), rgba(255,255,255,0.10) 45%, rgba(0,0,0,0.20)),
+      transparent 0 9%, var(--tool) 9% 11%, transparent 11% 19%, var(--tool) 19% 20%,
+      transparent 20% 78%, var(--tool) 78% 79%, transparent 79% 87%, var(--tool) 87% 89%, transparent 89%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 3px),
+    linear-gradient(90deg, rgba(0,0,0,0.38), rgba(255,255,255,0.08) 38%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0.34)),
     var(--c);
-  border-color: rgba(0,0,0,0.28);
+  border-color: rgba(0,0,0,0.4);
   color: var(--spine-icon);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.28);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.04);
 }
-.spine svg { width: 16px; height: 16px; }
+.spine.on::before {
+  content: ""; position: absolute; left: 6px; right: 6px; top: 25%; height: 24%;
+  border: 1px solid var(--tool); background: rgba(0,0,0,0.3); border-radius: 1px;
+}
 .spine-date { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
 .spine-gap {
   align-self: stretch; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
@@ -319,12 +341,6 @@ blockquote cite {
 .faq details[open] summary::after { content: "–"; }
 .faq .ans { padding: 0 4px 20px; margin: 0; color: var(--text); max-width: 700px; }
 
-/* Placeholders */
-.todo {
-  background: rgba(212,169,79,0.14); border: 1px dashed var(--amber); border-radius: 2px;
-  padding: 0 0.35em; font-size: 0.9em; color: var(--text-bright);
-}
-
 /* Qualifier */
 .qualifier-card { padding: 32px; }
 .q-meta { text-align: center; margin-bottom: 2px; }
@@ -340,7 +356,7 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
 }
 .opt .ltr { font-family: var(--display); font-style: italic; font-weight: 600; font-size: 1.35rem; color: var(--amber-text); min-width: 1.4ch; }
 .opt:hover .box { border-color: var(--amber-text); }
-.opt input:checked + .box { border-color: var(--amber-text); background: rgba(212,169,79,0.12); color: var(--text-bright); }
+.opt input:checked + .box { border-color: var(--amber-text); background: rgba(194,164,107,0.12); color: var(--text-bright); }
 .opt input:focus-visible + .box { outline: 2px solid var(--cyan); outline-offset: 2px; }
 .q-actions { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
 
@@ -350,7 +366,8 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
 .result h3:focus { outline: none; }
 .result .who { margin: 0 auto 14px; max-width: 620px; color: var(--text); }
 .result .personal { margin: 0 auto 26px; max-width: 560px; color: var(--amber-text); font-family: var(--display); font-style: italic; font-weight: 500; font-size: 1.6rem; line-height: 1.25; }
-.result .meta { margin: 16px 0 0; color: var(--text-dim); font-size: 1rem; }
+.result .meta { margin: 12px auto 0; max-width: 620px; color: var(--text-dim); font-size: 1rem; }
+.result .reads { margin: 22px auto 0; max-width: 620px; color: var(--text-bright); font-size: 1.08rem; }
 .result .second { margin: 18px 0 0; color: var(--text); font-style: italic; }
 .result .actions { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center; }
 .result .foot { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 1rem; }
@@ -359,7 +376,8 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
 /* Footer */
 .site-footer { padding: 36px 0 56px; text-align: center; }
 .site-footer .brand-line { font-family: var(--display); font-style: italic; font-size: 1.35rem; color: var(--text-bright); margin: 18px 0 8px; }
-.site-footer .src { color: var(--text-dim); font-size: 0.92rem; font-style: italic; margin: 0; }
+.site-footer .src { color: var(--text-dim); font-size: 0.92rem; font-style: italic; margin: 0 0 6px; }
+.site-footer .contact { color: var(--text); font-size: 1rem; margin: 0 0 10px; }
 
 [hidden] { display: none !important; }
 
@@ -368,7 +386,8 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
   .grid-3 { grid-template-columns: 1fr; gap: 8px; }
   .hero { padding-top: 48px; }
   .spines { gap: 6px; }
-  .spine { width: 25px; }
+  .spine { width: 26px; }
+  .spine.on::before { left: 4px; right: 4px; }
   .spine-gap { min-width: 42px; }
   .qualifier-card { padding: 22px 18px; }
   .btn { padding: 14px 22px; }
@@ -416,7 +435,7 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
         <p class="sub">Six evenings, one list.</p>
       </div>
       <div class="grid-3">
-        <div class="card reason"><div class="num">i.</div><p>There's no voting and no assigned book you hate: a librarian picks the list.</p></div>
+        <div class="card reason"><div class="num">i.</div><p>There's no voting and no endless debate over what to read: a librarian picks each book, shaped by what your group enjoys.</p></div>
         <div class="card reason"><div class="num">ii.</div><p>A librarian runs the room, so the conversation stays on the book.</p></div>
         <div class="card reason"><div class="num">iii.</div><p>A fortnight between meetings gives you time to read, and €70 covers all six evenings, drink included.</p></div>
       </div>
@@ -467,11 +486,15 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
       </div>
       <details>
         <summary>I haven't read much lately. Will I keep up?</summary>
-        <p class="ans">You're in good company: in Ireland, 40% of those surveyed read just one to five books a year (Red C for LGMA, 2026). You get two weeks between meetings, your list is set before the first night, and the library lends you the book. <span class="todo">[CONFIRM: list published before 4 November.]</span></p>
+        <p class="ans">You're in good company: in Ireland, 40% of those surveyed read just one to five books a year (Red C for LGMA, 2026). You get two weeks to read each book, your first two books are set before the first night, and the library lends you the copy.</p>
+      </details>
+      <details>
+        <summary>How are the books chosen?</summary>
+        <p class="ans">A librarian picks each book, shaped by what your group enjoys. There's one assigned book for each evening, and the discussion stays on that book. Your first two are set before the first night. After that, your librarian suggests the next two titles ahead of time, just for fast readers who want to read ahead.</p>
       </details>
       <details>
         <summary>What if I haven't finished the book?</summary>
-        <p class="ans">Come anyway. <span class="todo">[CONFIRM spoiler policy.]</span></p>
+        <p class="ans">Come anyway. Before we start, everyone says how far they've got. Spoilers stay out of the room unless everyone has finished the book. Members who have finished can keep talking afterwards.</p>
       </details>
       <details>
         <summary>What does it cost?</summary>
@@ -479,7 +502,7 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
       </details>
       <details>
         <summary>Do I need a library card?</summary>
-        <p class="ans">Yes. You borrow the book with your Mayor Street Library card. <span class="todo">[CONFIRM: how to sign up, and any cost.]</span></p>
+        <p class="ans">Yes, and it's free. You borrow the book with your Mayor Street Library card. To get one, bring a valid ID and proof of address.</p>
       </details>
       <details>
         <summary>Why not join a free club?</summary>
@@ -497,7 +520,7 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
         <p class="sub">Five questions. One stream.</p>
       </div>
       <div class="card qualifier-card">
-        <noscript><p>The “Find your cohort” questions need JavaScript. Without it: the three streams are Crime &amp; Thriller, Romance &amp; Romantasy, and Contemporary &amp; Irish Fiction.</p></noscript>
+        <noscript><p>The “Find your cohort” questions need JavaScript. Without it: the three streams are Crime &amp; Thriller, Romance &amp; Romantasy, and Contemporary &amp; Irish Fiction. To reserve a seat, email <a href="mailto:mayorstreetlibrary@dublincity.ie">mayorstreetlibrary@dublincity.ie</a>.</p></noscript>
 
         <div id="quiz" hidden>
           <div class="q-meta"><span class="q-count" id="qCount"></span></div>
@@ -525,6 +548,7 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
   <div class="wrap">
     <div class="orn" aria-hidden="true"><span></span><i></i><span></span></div>
     <p class="brand-line">Open Book Wednesdays at Mayor Street Library.</p>
+    <p class="contact">Questions? <a href="mailto:mayorstreetlibrary@dublincity.ie">mayorstreetlibrary@dublincity.ie</a></p>
     <p class="src">Sources: Red C for LGMA, Ireland Reads (2026); NIQ, Irish Book Market (2026); LGMA (2026); Mumsnet posts.</p>
   </div>
 </footer>
@@ -533,10 +557,12 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
 (function () {
   "use strict";
 
-  /* ---------- CONFIG: fill these in ---------- */
+  /* ---------- CONFIG ---------- */
   var CONFIG = {
-    bookingUrl: "",        // e.g. "https://..." (empty shows the [BOOKING LINK] placeholder)
-    librarianEmail: ""     // e.g. "bookclub@example.ie" (empty shows the [EMAIL] placeholder)
+    // Leave empty to open a pre-filled email to the library. Set to a booking page URL
+    // (Eventbrite, Ticket Tailor, etc.) once you have one and every reserve button will use it.
+    bookingUrl: "",
+    librarianEmail: "mayorstreetlibrary@dublincity.ie"
   };
 
   /* ---------- Theme toggle ---------- */
@@ -546,7 +572,7 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
     var light = root.classList.contains("light");
     toggle.setAttribute("aria-label", light ? "Switch to dark theme" : "Switch to light theme");
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", light ? "#f6f0e2" : "#020a18");
+    if (meta) meta.setAttribute("content", light ? "#eeeae0" : "#14110e");
   }
   toggle.addEventListener("click", function () {
     root.classList.toggle("light");
@@ -557,8 +583,9 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
 
   /* ---------- Six spines ---------- */
   var DATES = ["4 Nov", "18 Nov", "2 Dec", "16 Dec", "13 Jan", "27 Jan"];
-  var HEIGHTS = [74, 92, 82, 98, 86, 94];
-  var COLORS = ["#8c2f3d", "#3f7a5a", "#3d5f96", "#b5832f", "#7a4b7a", "#2f7f86"]; /* wine, forest, ink blue, ochre, plum, teal */
+  var HEIGHTS = [76, 94, 84, 100, 88, 96];
+  /* oxblood leather, faded slate blue, tobacco calf, old olive, chestnut, weathered teal */
+  var COLORS = ["#6e2d2a", "#3b4a5c", "#7a5a3a", "#464f3c", "#5a3a2c", "#3d5a5c"];
   var GLASS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10l-1 7a4 4 0 0 1-8 0L7 3z"/><path d="M12 14v7M8 21h8"/></svg>';
 
   function renderSpines(el, filled, withGap) {
@@ -599,7 +626,10 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
         STRETCH: "We'll pick crime that rewards a close read."
       },
       cta: "Reserve my seat in Crime & Thriller",
-      firstList: "[LIBRARIAN: first list, announced by DATE.]"
+      reads: [
+        { t: "Lying in Wait", a: "Liz Nugent" },
+        { t: "In the Woods", a: "Tana French" }
+      ]
     },
     R: {
       name: "Romance & Romantasy",
@@ -611,7 +641,10 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
         STRETCH: "We'll push beyond the bestseller lists."
       },
       cta: "Reserve my seat in Romance & Romantasy",
-      firstList: "[LIBRARIAN: first list, announced by DATE.]"
+      reads: [
+        { t: "Book Lovers", a: "Emily Henry" },
+        { t: "Caraval", a: "Stephanie Garber" }
+      ]
     },
     L: {
       name: "Contemporary & Irish Fiction",
@@ -623,7 +656,10 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
         STRETCH: "Expect books you wouldn't pick yourself."
       },
       cta: "Reserve my seat in Contemporary & Irish Fiction",
-      firstList: "[LIBRARIAN: first list, announced by DATE.]"
+      reads: [
+        { t: "Small Things Like These", a: "Claire Keegan" },
+        { t: "Brooklyn", a: "Colm Tóibín" }
+      ]
     }
   };
   var ORDER = ["C", "R", "L"];
@@ -679,6 +715,16 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
     return String(s).replace(/[&<>"]/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
     });
+  }
+
+  /* Reserve link: a booking page if set, otherwise a pre-filled email to the library */
+  function bookingHref(stream) {
+    if (CONFIG.bookingUrl) return CONFIG.bookingUrl;
+    var subject = "Reserve my seat: " + stream.name + " (Open Book Wednesdays)";
+    var body = "Hello,\n\nI'd like to reserve a seat in the " + stream.name +
+      " cohort of Open Book Wednesdays, starting Wednesday 4 November at 7pm (€70 for six evenings).\n\n" +
+      "Name:\nPhone:\nI already have a Mayor Street Library card (yes/no):\n\nThank you";
+    return "mailto:" + CONFIG.librarianEmail + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
   }
 
   function updateSpines() {
@@ -759,23 +805,24 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
     var q5 = QUESTIONS[4].opts[answers[4]].flag;       // RETURNER | SOCIAL | STRETCH
     var st = STREAMS[win];
 
-    var ctaHref = CONFIG.bookingUrl ? esc(CONFIG.bookingUrl) : "#";
-    var ctaChip = CONFIG.bookingUrl ? "" : ' <span class="todo">[BOOKING LINK]</span>';
-    var emailHtml = CONFIG.librarianEmail
-      ? '<a href="mailto:' + esc(CONFIG.librarianEmail) + '">' + esc(CONFIG.librarianEmail) + "</a>"
-      : '<span class="todo">[EMAIL]</span>';
+    var emailHtml = '<a href="mailto:' + esc(CONFIG.librarianEmail) + '">' + esc(CONFIG.librarianEmail) + "</a>";
+    var readsHtml = st.reads.map(function (b) {
+      return "<em>" + esc(b.t) + "</em> by " + esc(b.a);
+    }).join(" and ");
 
     var html = "";
     html += '<h3 id="resultHead" tabindex="-1">' + esc(st.headline) + "</h3>";
     html += '<p class="who">' + esc(st.who) + "</p>";
     html += '<p class="personal">' + esc(st.personal[q5]) + "</p>";
-    html += '<div class="actions"><a class="btn" id="ctaBtn" href="' + ctaHref + '">' + esc(st.cta) + "</a>" + ctaChip + "</div>";
+    html += '<div class="actions"><a class="btn" id="ctaBtn" href="' + esc(bookingHref(st)) + '">' + esc(st.cta) + "</a></div>";
+    if (!CONFIG.bookingUrl) html += '<p class="meta">This opens an email to Mayor Street Library with your stream filled in.</p>';
     html += '<p class="meta">€70 · six Wednesdays from 4 November, 7pm · drink included.</p>';
-    html += '<p class="meta"><strong>First list:</strong> <span class="todo">' + esc(st.firstList) + "</span></p>";
+    html += '<p class="reads"><strong>Opening reads:</strong> ' + readsHtml + ".</p>";
+    html += '<p class="meta">One book is assigned for each evening, and the discussion stays on that book. Your librarian also suggests the next two titles ahead, shaped by what your group enjoys, for fast readers who want to read ahead.</p>';
     if (showSecond) html += '<p class="second">Close second: <strong>' + esc(STREAMS[second].name) + "</strong></p>";
     html += '<div class="foot">';
     html += "<p>Groups are 8 to 15 readers. If a stream is too full or too small, we'll place you in a different group.</p>";
-    html += '<p>Not sure? Ask a librarian: ' + emailHtml + ".</p>";
+    html += "<p>Not sure? Ask a librarian: " + emailHtml + ".</p>";
     html += '<p style="margin-top:14px"><button type="button" class="btn btn-ghost" id="retake">Retake the questions</button></p>';
     html += "</div>";
 
@@ -784,8 +831,6 @@ legend { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem,
     resultEl.hidden = false;
     renderSpines(spinesQuiz, 6, false);
 
-    var cta = document.getElementById("ctaBtn");
-    if (!CONFIG.bookingUrl) cta.addEventListener("click", function (e) { e.preventDefault(); });
     document.getElementById("retake").addEventListener("click", restart);
     var head = document.getElementById("resultHead");
     head.focus({ preventScroll: true });
